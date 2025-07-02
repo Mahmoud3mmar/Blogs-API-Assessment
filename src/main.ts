@@ -43,7 +43,8 @@ async function bootstrap() {
     console.log(`Health check: http://localhost:${port}/health`);
   } catch (error) {
     console.error('Failed to start application:', error);
-    process.exit(1);
+    // Don't exit immediately, let Vercel handle the error
+    throw error;
   }
 }
 
