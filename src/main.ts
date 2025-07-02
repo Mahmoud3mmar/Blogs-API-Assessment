@@ -33,13 +33,20 @@ async function bootstrap() {
       .build();
 
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api', app, document);
+    SwaggerModule.setup('/swagger', app, document, {
+      customCssUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css",
+      customJs: [
+        "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.js",
+      ],
+    });
 
     const port = process.env.PORT || 3000;
     await app.listen(port, '0.0.0.0');
     
     console.log(`Application is running on: http://localhost:${port}`);
-    console.log(`Swagger documentation: http://localhost:${port}/api`);
+    console.log(`Swagger documentation: http://localhost:${port}/swagger`);
     console.log(`Health check: http://localhost:${port}/health`);
   } catch (error) {
     console.error('Failed to start application:', error);
