@@ -5,30 +5,18 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 @Controller()
 export class AppController {
   @Get()
-  @ApiOperation({ summary: 'Health check and API information' })
+  @ApiOperation({ summary: ' API information' })
   @ApiResponse({ status: 200, description: 'API is running' })
   getHello() {
     return {
       message: 'Blog API is running!',
       version: '1.0.0',
-      documentation: '/api',
+      documentation: '/swagger',
       endpoints: {
         auth: '/auth',
         posts: '/posts',
         admin: '/admin'
       },
-      status: 'healthy'
-    };
-  }
-
-  @Get('health')
-  @ApiOperation({ summary: 'Health check endpoint' })
-  @ApiResponse({ status: 200, description: 'Service is healthy' })
-  healthCheck() {
-    return {
-      status: 'ok',
-      timestamp: new Date().toISOString(),
-      service: 'Blog API'
     };
   }
 } 
